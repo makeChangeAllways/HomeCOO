@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="single_msg" rowHeight="52" id="u3K-JW-HdG" customClass="SingleMessageCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="u3K-JW-HdG" id="SKn-Y4-fhs">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="49.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kfs-yi-48f">
+                        <rect key="frame" x="10" y="5" width="50" height="45"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="50" id="tJV-O4-Mtw"/>
+                            <constraint firstAttribute="height" constant="45" id="zFG-hK-7FX"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="(事件:布防)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wgl-Yv-PHz">
+                        <rect key="frame" x="90" y="8" width="172" height="13"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="下午" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I3T-II-IeZ">
+                        <rect key="frame" x="270" y="5" width="42" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="eTB-SN-WnB"/>
+                            <constraint firstAttribute="width" constant="42" id="wKo-KM-HFE"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="17:30:31" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BYE-hw-dCt">
+                        <rect key="frame" x="198" y="28" width="114" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="114" id="DiC-ZU-h0a"/>
+                            <constraint firstAttribute="height" constant="21" id="Xrd-vg-QqH"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nci-GK-fg9">
+                        <rect key="frame" x="313" y="12" width="5" height="5"/>
+                        <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="5" id="61V-zK-752"/>
+                            <constraint firstAttribute="width" constant="5" id="LWH-lC-pnM"/>
+                        </constraints>
+                        <state key="normal">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="设备已布防" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ETO-LF-GzC">
+                        <rect key="frame" x="90" y="31" width="117" height="13"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="BYE-hw-dCt" firstAttribute="top" secondItem="I3T-II-IeZ" secondAttribute="bottom" constant="2" id="9Ba-xk-vI7"/>
+                    <constraint firstItem="kfs-yi-48f" firstAttribute="leading" secondItem="SKn-Y4-fhs" secondAttribute="leading" constant="10" id="d9V-ge-4d1"/>
+                    <constraint firstItem="I3T-II-IeZ" firstAttribute="top" secondItem="SKn-Y4-fhs" secondAttribute="top" constant="5" id="dX0-5d-8P0"/>
+                    <constraint firstAttribute="trailing" secondItem="nci-GK-fg9" secondAttribute="trailing" constant="2" id="gAe-jY-Jcb"/>
+                    <constraint firstItem="kfs-yi-48f" firstAttribute="top" secondItem="SKn-Y4-fhs" secondAttribute="top" constant="5" id="wD8-pe-Rdu"/>
+                    <constraint firstAttribute="trailing" secondItem="I3T-II-IeZ" secondAttribute="trailing" constant="8" id="wRe-r5-wOX"/>
+                    <constraint firstItem="nci-GK-fg9" firstAttribute="top" secondItem="SKn-Y4-fhs" secondAttribute="top" constant="12" id="xWV-JQ-g3O"/>
+                    <constraint firstAttribute="trailing" secondItem="BYE-hw-dCt" secondAttribute="trailing" constant="8" id="zVc-tc-YDd"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="alarm_icon" destination="kfs-yi-48f" id="GHC-Ca-yYC"/>
+                <outlet property="contact_event" destination="ETO-LF-GzC" id="Fix-a1-Ual"/>
+                <outlet property="morning_affternoon" destination="I3T-II-IeZ" id="IhK-Jg-vgd"/>
+                <outlet property="red_btn" destination="nci-GK-fg9" id="uxu-fR-axq"/>
+                <outlet property="time_L" destination="BYE-hw-dCt" id="y1w-b3-FiO"/>
+                <outlet property="typeLabel" destination="wgl-Yv-PHz" id="maW-YT-fIa"/>
+            </connections>
+            <point key="canvasLocation" x="707" y="158"/>
+        </tableViewCell>
+    </objects>
+</document>

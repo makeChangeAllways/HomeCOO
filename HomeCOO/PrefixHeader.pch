@@ -1,0 +1,82 @@
+//
+//  PrefixHeader.pch
+//  HomeCOO
+//
+//  Created by tgbus on 16/5/14.
+//  Copyright © 2016年 Jiaoda. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+#import "Masonry.h"
+#import "public.h"
+#import "Device.h"
+
+#import "CustomVC.h"
+#import "CustomNavVC.h"
+#import "CustomTableV.h"
+
+#import "SVProgressHUD.h"
+
+#define __RGB(R,G,B)  [UIColor colorWithRed:R/255.0 green:G/255.0 blue:B/255.0 alpha:1.f]
+#define __RGBA(R,G,B,A) [UIColor colorWithRed:R/255.0 green:G/255.0 blue:B/255.0 alpha:(float)A]
+#define Public_Background_Color __RGB(240,240,240)
+
+/////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ Common Debug
+ */
+#define DEBUGLOG
+
+#ifdef DEBUGLOG
+#define DNSLog(...) NSLog(__VA_ARGS__)
+#else
+#define DNSLog(...) {}
+//#define NSLog(...) {}
+#endif
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ UI_SIZE
+ */
+
+#define UI_NAVIGATION_BAR_HEIGHT        44
+#define UI_TAB_BAR_HEIGHT               49
+#define UI_STATUS_BAR_HEIGHT            20
+#define UI_SCREEN_WIDTH                 ([[UIScreen mainScreen] bounds].size.width)
+#define UI_SCREEN_HEIGHT                ([[UIScreen mainScreen] bounds].size.height)
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+//服务器URL
+//#define HomecooServiceURL @"http://192.168.1.104:8080/smarthome"
+//#define HomecooServiceURL @"http://192.168.1.112:8080/smarthome"
+
+//杭州服务器地址
+#define HomecooServiceURL @"http://120.26.220.55:8080/smarthome"
+
+#ifdef DEBUG
+#define NSLog(...) NSLog(__VA_ARGS__)
+#define debugMethod() NSLog(@"%s", __func__)
+#else
+#define NSLog(...)
+#define debugMethod()
+#endif
+
+#ifdef DEBUG
+#define NSLog(...) NSLog(__VA_ARGS__)
+#define debugMethod() NSLog(@"%s", __func__)
+#else
+#define NSLog(...)
+#define debugMethod()
+#endif
+
+
+#endif /* PrefixHeader_pch */
+
+
+
+
+

@@ -1,0 +1,52 @@
+//
+//  Prefix header
+//
+//  The contents of this file are implicitly included at the beginning of every source file.
+//
+
+#import <Availability.h>
+
+#ifndef __IPHONE_3_0
+#warning "This project uses features only available in iOS SDK 3.0 and later."
+#endif
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+    #import "CommonFunction.h"
+    #import "P2PHeadView.h"
+    #import "MBProgressHUD.h"
+    #import "MyTextField.h"
+    #import "UIControl+WTool.h"
+
+//-------位置宽高-------
+#define VIEWHEIGHT       ([[UIScreen mainScreen] bounds].size.height)
+#define VIEWWIDTH        ([[UIScreen mainScreen] bounds].size.width)
+#define Height_Screen       Screen_Height
+#define Width_Screen        Screen_Width
+#define StatusBar_Height    ([UIApplication sharedApplication].statusBarFrame.size.height)
+#define Height_StatusBar    ([UIApplication sharedApplication].statusBarFrame.size.height)
+#define Screen_AppShowFrame ([UIScreen mainScreen].applicationFrame)
+#define AppContentHeight    (IsIos7SystemLater?Screen_Height:Screen_AppShowFrame.size.height)
+
+#define Screen_WidthOrientation (UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)?Screen_Height:Screen_Width)
+#define Screen_HeightOrientation (UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)?Screen_Width:Screen_Height)
+#define IOS9_OR_LATER		( [[[UIDevice currentDevice] systemVersion] compare:@"9.0"] != NSOrderedAscending )
+#define IOS8_OR_LATER		( [[[UIDevice currentDevice] systemVersion] compare:@"8.0"] != NSOrderedAscending )
+// 基础宏定义
+#define ALERTSHOW(warn,msg)                          [[[UIAlertView alloc]initWithTitle:warn message:msg delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil] show];
+
+#define ColorWithRGB(R,G,B)     [UIColor colorWithRed:R/255.0 green:G/255.0 blue:B/255.0 alpha:255.0/255.0]
+
+#define RectMake(x, y, w, h)    CGRectMake(x, y, w, h)
+#define SizeMake(w, h)          CGSizeMake(w, h)
+#define PointMake(x, y)         CGPointMake(x, y)
+#define WidthForView(view)      (view.frame.size.width)
+#define HeightForView(view)     (view.frame.size.height)
+#define XForView(view)          (view.frame.origin.x)
+#define YForView(view)          (view.frame.origin.y)
+#define LeftForView(view)       (view.frame.origin.x)
+#define TopForView(view)        (view.frame.origin.y)
+#define BottomForView(view)     (view.frame.origin.y + view.frame.size.height)
+#define RightForView(view)      (view.frame.origin.x + view.frame.size.width)
+#endif
