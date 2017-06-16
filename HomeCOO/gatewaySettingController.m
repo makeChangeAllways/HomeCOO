@@ -1511,6 +1511,8 @@ static  NSInteger indexNum;
     refreshBtn.frame = CGRectMake(refreshBtnX, refreshBtnY, refreshBtnW, refreshBtnH);
     [refreshBtn  setTitle:@"搜索主机IP" forState:UIControlStateNormal];
     [refreshBtn  setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [refreshBtn  setTitle:@"搜索主机IP" forState:UIControlStateHighlighted];
+    [refreshBtn  setTitleColor:[UIColor orangeColor] forState:UIControlStateHighlighted];
 
     [refreshBtn  setImage:[UIImage  imageNamed:@"refresh.png"] forState:UIControlStateNormal];
     [refreshBtn  setImage:[UIImage  imageNamed:@"refresh.png"] forState:UIControlStateHighlighted];
@@ -1537,6 +1539,8 @@ static  NSInteger indexNum;
 
 //主动接收网关的IP地址
 -(void)receiveUdpBordcastFromWG{
+    
+     [MBProgressHUD  showMessage:@"正在搜索主机IP,请等待……" toView:self.fullscreenView];
     
     _udpSocket= [UdpSocketManager shareUdpSocketManager];
     
@@ -1845,12 +1849,14 @@ static  NSInteger indexNum;
         NSString *IpAdded = @"";
         
         for (int i = 0; i<[Address length]/2; i++) {
+            
             NSString * temp10 = [NSString stringWithFormat:@"%lu",strtoul([[Address substringWithRange:NSMakeRange(2*i, 2)]UTF8String],0,16)];
             IpAdded  =[NSString stringWithFormat:@"%@.%@",IpAdded,temp10];
         }
         
         NSString *GateqayIp =[IpAdded substringFromIndex:1 ];
-        NSLog(@"接受成功IP = %@",GateqayIp);
+        
+        [MBProgressHUD  hideAllHUDsForView:self.fullscreenView animated:YES];
         [[[UIAlertView alloc] initWithTitle:@"主机IP匹配成功" message:GateqayIp delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
         
         NSArray * gateways=[gatewayMessageTool   queryWithgateways];
