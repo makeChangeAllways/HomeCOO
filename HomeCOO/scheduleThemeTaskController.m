@@ -338,7 +338,7 @@ static NSString *string = @"scheduleCollectionViewCell";
                 }
             }
             
-            shijin = [NSString  stringWithFormat:@"%@ %@",riqi,days];
+            shijin = [NSString  stringWithFormat:@"%@ %@  %@",riqi,days,schedules.shij];
         
         }else{
             
@@ -378,14 +378,12 @@ static NSString *string = @"scheduleCollectionViewCell";
                     }
                 }
                 
-                shijin = [NSString  stringWithFormat:@"%@ %@",riqi,days];
-                
+                shijin = [NSString  stringWithFormat:@"%@ %@  %@",riqi,days,schedules.shij];
             }else{
                 
                 shijin = [NSString  stringWithFormat:@"%@ %@",riqi,schedules.shij];
             }
-            
-           
+  
             _cell.alarmMessageLable.text =shijin;
             
         }else{
