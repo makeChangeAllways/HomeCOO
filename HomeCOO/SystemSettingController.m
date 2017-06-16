@@ -156,10 +156,84 @@
 //    versionLable.textColor = [UIColor  blackColor];
 //    versionLable.textAlignment = 1;
 //    
+//    UIButton  *checkVersionBtn = [[UIButton  alloc]initWithFrame:CGRectMake(_configureLable.width/2-30, _configureLable.height-40, 60, 30)];
 //    
+//    checkVersionBtn.backgroundColor = [UIColor grayColor];
+//    [checkVersionBtn  setTitle:@"检查更新" forState:UIControlStateNormal];
+//    [checkVersionBtn  setTitle:@"检查更新" forState:UIControlStateHighlighted];
+//    [checkVersionBtn  setTitleColor:[UIColor  blackColor]  forState:UIControlStateNormal];
+//    [checkVersionBtn  setTitleColor:[UIColor  orangeColor]  forState:UIControlStateHighlighted];
+//    
+//    [checkVersionBtn addTarget:self action:@selector(checkUpdateVerison) forControlEvents:UIControlEventTouchUpInside];
+//    
+//    checkVersionBtn.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:14];
+//    
+//    [self.configureLable  addSubview:checkVersionBtn];
 //    [self.configureLable  addSubview:versionLable];
 //    
 //}
+//-(void)checkUpdateVerison{
+//
+//   // NSLog(@"检查更新");
+//
+//}
+#pragma mark - 方法1(异步请求)，APP检查更新
+-(void)checkAppToUpdate{
+    //app的数字ID
+    NSString * plist = [[NSBundle mainBundle] pathForResource:@"Common-Configuration" ofType:@"plist"];
+    NSDictionary * dic = [NSDictionary dictionaryWithContentsOfFile:plist];
+    NSString *appleID = dic[@"AppleID"];
+    
+    //获取当前APP的版本号
+    NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];
+    NSString *nowVersion = [infoDict objectForKey:@"CFBundleVersion"];
+
+    //已经上架的APP的版本号
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://itunes.apple.com/lookup?id=%@",appleID]];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
+    [request setHTTPMethod:@"GET"];
+    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        
+        if ( [data length] > 0 && !error ) { // Success
+            
+            NSDictionary *appData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                // All versions that have been uploaded to the AppStore
+                NSArray *versionsInAppStore = [[appData valueForKey:@"results"] valueForKey:@"version"];
+                
+                if ( ![versionsInAppStore count] ) { // No versions of app in AppStore
+                    
+                    return;
+                    
+                } else {
+                    //已经上架的APP的版本号
+                    NSString *versionInAppStore = [versionsInAppStore objectAtIndex:0];
+                    
+                    /*
+                     *1. 不相等，说明有可更新的APP。此方式导致审核被拒绝，因为新版本与已发布版本不相等，弹出了更新提示框。
+                     *2. “不相等”方式改为“小于”，再提示更新，只有上架的APP，才可检测更新并弹框。不过此方式只针对此类版本号（1或1.1），不适合此类版本号（1.1.1或1.1.1.x）
+                     *3. 不过1.1~1.9，1.1~9.1，有81种，足够多的版本
+                     *4. 改进1，若是1.1与1.1.1的比较（不同类比较），可以通过版本号的长度来提示更新，长度小于则提示。
+                     *5. 改进2，若是1.1.1与1.1.2（即长度>=5）的比较（同类比较），取最后3位比较。
+                     */
+                    if([nowVersion floatValue] < [versionInAppStore floatValue]){
+                        NSString *message=[[NSString alloc] initWithFormat:@"%@%@%@",NSLocalizedString(@"can_update_to", nil),versionInAppStore,NSLocalizedString(@"version", nil)];
+                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"update", nil) message:message delegate:self cancelButtonTitle:NSLocalizedString(@"next_time", nil)  otherButtonTitles:NSLocalizedString(@"update_now", nil), nil];
+                       
+                        [alert show];
+                    }
+                }
+                
+            });
+        }
+        
+    }];
+    
+}
 
 
 /**
@@ -371,5 +445,12 @@
     [self  dismissViewControllerAnimated:YES completion:nil];
     
     
+}
+-(BOOL)shouldAutorotate{
+    return YES;
+}
+
+-(NSUInteger)supportedInterfaceOrientations{
+    return UIInterfaceOrientationMaskLandscape;
 }
 @end
